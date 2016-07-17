@@ -71,4 +71,14 @@ test('Clear Test', function () {
         + ' Actual value: ' + txtInput.value);
     equal(txtResult.value, expected, 'Expected value: ' + expected
         + ' Actual value: ' + txtResult.value);
-})
+});
+
+test('Multiply Test', function () {
+    expect(1);
+    txtInput.value = '10';
+    txtResult.value = '20';
+    QUnit.triggerEvent(btnMultiply, 'click');
+    var expected = '200';
+    equal(txtResult.value, expected, 'Expected value: ' + expected +
+        ' Actual value: ' + txtResult.value);
+});
