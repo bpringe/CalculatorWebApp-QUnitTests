@@ -1,50 +1,50 @@
-﻿'use strict';
+﻿/// <reference path="_references.js" />
 
-var txtInput;
-var txtResult;
+(function () {
+    this.calculatorNamespace = this.calculatorNamespace || {};
+    var ns = this.calculatorNamespace;
 
-function initialize() {
-    for (var i = 0; i < 10; i++) {
-        document.getElementById('btn' + i).addEventListener('click', numberClick, false);
+    ns.initialize = function() {
+        var calculator = new ns.Calculator();
+        $('button[id^="btnNumber"]').on('click', calculator.numberClick);
+        $('#btnPlus').on('click', calculator.plusClick);
+        $('#btnMinus').on('click', calculator.minusClick);
+        $('#btnClearEntry').on('click', calculator.clearEntry);
+        $('#btnClear').on('click', calculator.clear);
+        $('#btnMultiply').on('click', calculator.multiplyClick);
+        calculator.clear();
     }
 
-    txtInput = document.getElementById('txtInput');
-    txtResult = document.getElementById('txtResult');
+    ns.Calculator = (function () {
+        function Calculator() {
+        }
 
-    document.getElementById('btnPlus').addEventListener('click', plusClick, false);
-    document.getElementById('btnMinus').addEventListener('click', minusClick, false);
-    document.getElementById('btnClearEntry').addEventListener('click', clearEntry, false);
-    document.getElementById('btnClear').addEventListener('click', clear, false);
-    document.getElementById('btnMultiply').addEventListener('click', multiplyClick, false);
-    clear();
-}
+        Calculator.prototype.clear = function () {
+            $('#txtInput').val('0');
+            $('#txtResult').val('0');
+        };
 
-function clear() {
-    txtInput.value = '0';
-    txtResult.value = '0';
-}
+        Calculator.prototype.clearEntry = function () {
+            $('#txtInput').val('0');
+        };
 
-function clearEntry() {
-    txtInput.value = '0';
-}
+        Calculator.prototype.numberClick = function () {
+            $('#txtInput').val($('#txtInput').val() == '0' ?
+                $(this).text() : $('#txtInput').val() + $(this).text());
+        };
 
-function numberClick() {
-    txtInput.value = txtInput.value == '0' ?
-        this.innerText : txtInput.value + this.innerText;
-}
+        Calculator.prototype.plusClick = function () {
+            $('#txtResult').val(Number($('#txtResult').val()) +
+                Number($('#txtInput').val()));
+            Calculator.prototype.clearEntry();
+        };
 
-function plusClick() {
-    txtResult.value = Number(txtResult.value) + Number(txtInput.value);
-    clearEntry();
-}
+        Calculator.prototype.minusClick = function () {
+            $('#txtResult').val(Number($('#txtResult').val()) -
+                Number($('#txtInput').val()));
+            Calculator.prototype.clearEntry();
+        };
 
-function minusClick() {
-    txtResult.value = Number(txtResult.value) - Number(txtInput.value);
-    clearEntry();
-}
-
-function multiplyClick() {
-    txtResult.value = Number(txtResult.value) * Number(txtInput.value);
-    clearEntry();
-}
-
+        return Calculator;
+    })();
+})();

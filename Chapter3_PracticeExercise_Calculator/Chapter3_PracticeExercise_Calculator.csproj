@@ -70,6 +70,13 @@
     <Content Include="Content\defaultFromBook.css" />
     <Content Include="Images\ContosoLogo.jpg" />
     <Content Include="packages.config" />
+    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.0.js" />
+    <Content Include="Scripts\jquery-3.1.0.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -83,7 +90,8 @@
     <Content Include="default.html" />
     <Content Include="Scripts\CalculatorLibrary.js" />
     <Content Include="Scripts\qunit.js" />
-    <Content Include="Scripts\test.js" />
+    <Content Include="Scripts\tests.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
